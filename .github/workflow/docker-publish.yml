@@ -1,0 +1,26 @@
+name: Docker Build & Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du repo
+        uses: actions/checkout@v3
+
+      - name: Connexion à Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build et push de l'API
+        run: |
+          docker build -t valdocker99/transport-api:latest ./api
+          docker push valdocker99/transport-api:latest
+
+      - name: Build et push du Frontend
+        run: |
+          docker build -t valdocker99/transport-frontend:latest ./frontend
+          docker push valdocker99/transport-frontend:latest

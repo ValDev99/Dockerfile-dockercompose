@@ -1,0 +1,13 @@
+{
+    "name": "api",
+    "version": "1.0.0",
+    "type": "module",
+    "dependencies": {
+      "bun-types": "*",
+      "pg": "^8.11.1"
+    },
+    "scripts": {
+      "start": "bun index.ts"
+    }
+  }
+  
